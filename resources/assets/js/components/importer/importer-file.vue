@@ -75,6 +75,7 @@ tr {
 <script>
     export default {
         props: ['file', 'customFields'],
+
         data() {
             return {
                 activeFile: this.file,
@@ -90,7 +91,8 @@ tr {
                         { id: 'consumable', text: 'Consumables' },
                         { id: 'component', text: 'Components' },
                         { id: 'license', text: 'Licenses' },
-                        { id: 'user', text: 'Users' }
+                        { id: 'user', text: 'Users' },
+                        { id: 'manufacturer', text: 'Manufacturers' }
                     ],
                     statusText: null,
                 },
@@ -139,6 +141,13 @@ tr {
                         {id: 'phone_number', text: 'Phone Number' },
 
                     ],
+                    manufacturers: [
+                        {id: 'image', text: 'Image'},
+                        {id: 'url', text: 'URL'},
+                        {id: 'support_url', text: 'Support URL'},
+                        {id: 'support_phone', text: 'Support Phone'},
+                        {id: 'support_email', text: 'Support Email'},
+                    ],
                     customFields: this.customFields,
                 },
                 columnMappings: this.file.field_map || {},
@@ -169,6 +178,8 @@ tr {
                         return this.columnOptions.general.concat(this.columnOptions.licenses).sort(sorter);
                     case 'user':
                         return this.columnOptions.general.concat(this.columnOptions.users).sort(sorter);
+                    case 'manufacturer':
+                        return this.columnOptions.general.concat(this.columnOptions.manufacturers).sort(sorter);
                 }
                 return this.columnOptions.general;
             },
@@ -194,6 +205,7 @@ tr {
                 console.log(this.options.importType);
                 if(!this.options.importType) {
                     this.statusType='error';
+
                     this.statusText= "An import type is required... ";
                     return;
                 }

@@ -19,6 +19,7 @@
     </style>
 
 <div id="app">
+
     <importer inline-template v-cloak>
         <div class="row">
         <alert v-show="alert.visible" :alert-type="alert.type" v-on:hide="alert.visible = false">@{{ alert.message }}</alert>
@@ -59,28 +60,24 @@
                                         <th>Size</th>
                                         <th></th>
                                     </thead>
-                                    <tbody v-for="currentFile in files">
-
-                                    		<tr>
-                                    			<td>@{{ currentFile.file_path }}</td>
-                                    			<td>@{{ currentFile.created_at }} </td>
-                                    			<td>@{{ currentFile.filesize }}</td>
-                                    			<td>
-                                    			<button class="btn btn-sm btn-info" @click="toggleEvent(currentFile.id)">Process</button>
-                                    				<button class="btn btn-sm btn-danger" @click="deleteFile(currentFile)"><i class="fa fa-trash icon-white"></i></button>
-                                    			</td>
-                                    		</tr>
-                                            <tr>
-                                                <td>
-                                                    <import-file
-                                                            :key="currentFile.id"
-                                                            :file="currentFile"
-                                                            :custom-fields="customFields"
-                                                            @alert="updateAlert(alert)">
-                                                    </import-file>
-                                                </td>
-                                            </tr>
-
+                                    <tbody>
+                                        <tr v-for="currentFile in files">
+                                            <td>@{{ currentFile.file_path }}</td>
+                                            <td>@{{ currentFile.created_at }} </td>
+                                            <td>@{{ currentFile.filesize }}</td>
+                                            <td>
+                                            <button class="btn btn-sm btn-info" @click="toggleEvent(currentFile.id)">Process</button>
+                                                <button class="btn btn-sm btn-danger" @click="deleteFile(currentFile)"><i class="fa fa-trash icon-white"></i></button>
+                                            </td>
+                                            <td>
+                                                <import-file
+                                                        :key="currentFile.id"
+                                                        :file="currentFile"
+                                                        :custom-fields="customFields"
+                                                        @alert="updateAlert(alert)">
+                                                </import-file>
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>

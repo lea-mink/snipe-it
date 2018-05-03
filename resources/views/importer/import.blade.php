@@ -59,8 +59,8 @@
                                         <th>Size</th>
                                         <th></th>
                                     </thead>
-                                    <tbody>
-                                    	<template v-for="currentFile in files">
+                                    <tbody v-for="currentFile in files">
+
                                     		<tr>
                                     			<td>@{{ currentFile.file_path }}</td>
                                     			<td>@{{ currentFile.created_at }} </td>
@@ -70,13 +70,17 @@
                                     				<button class="btn btn-sm btn-danger" @click="deleteFile(currentFile)"><i class="fa fa-trash icon-white"></i></button>
                                     			</td>
                                     		</tr>
-                                    			<import-file
-                                                    :key="currentFile.id"
-                                                    :file="currentFile"
-                                                    :custom-fields="customFields"
-                                                    @alert="updateAlert(alert)">
-                                    			</import-file>
-                                    	</template>
+                                            <tr>
+                                                <td>
+                                                    <import-file
+                                                            :key="currentFile.id"
+                                                            :file="currentFile"
+                                                            :custom-fields="customFields"
+                                                            @alert="updateAlert(alert)">
+                                                    </import-file>
+                                                </td>
+                                            </tr>
+
                                     </tbody>
                                 </table>
                             </div>
